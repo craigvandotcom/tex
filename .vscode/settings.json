@@ -1,0 +1,19 @@
+{
+    "python.pythonPath": "${workspaceFolder}/venv/bin/python",
+    "editor.formatOnSave": true,
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python"
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "eslint.validate": [
+        "javascript",
+        "typescript"
+    ],
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "es5"
+}
