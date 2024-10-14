@@ -1,207 +1,65 @@
-# Cross-Platform Markdown Journal Application
+# Cross-Platform Markdown Journal
 
-This open-source project aims to create a cross-platform markdown journal application. The project uses a combination of Python for the backend and TypeScript for the frontend.
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python Version](https://img.shields.io/badge/python-3.12.7-blue.svg)](https://www.python.org/downloads/release/python-3127/)
+[![TypeScript Version](https://img.shields.io/badge/typescript-5.x-blue.svg)](https://www.typescriptlang.org/)
 
-## Development Environment Setup
+A cross-platform markdown journal application built with Python (Flask) backend and TypeScript (Next.js) frontend.
 
-### Python
+[Include a GIF or screenshot of your application here]
 
-This project uses Python 3.12.7. We recommend using pyenv for Python version management.
+## Features
 
-To set up Python with pyenv:
+- Cross-platform support (Web, Desktop, Mobile)
+- Markdown support for journal entries
+- Secure user authentication
+- Offline-first architecture
+- Data synchronization across devices
 
-1. Install pyenv (if not already installed):
-   ```
-   brew install pyenv
-   ```
+## Technologies Used
 
-2. Add pyenv to your shell:
-   ```
-   echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.zshrc
-   echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.zshrc
-   echo 'eval "$(pyenv init --path)"' >> ~/.zshrc
-   echo 'eval "$(pyenv init -)"' >> ~/.zshrc
-   ```
+- Backend: Python, Flask, SQLAlchemy
+- Frontend: TypeScript, Next.js, Tailwind CSS
+- Mobile/Desktop: Capacitor, Electron
 
-3. Restart your shell or run:
-   ```
-   source ~/.zshrc
-   ```
+## Installation
 
-4. Install Python 3.12.7:
-   ```
-   pyenv install 3.12.7
-   ```
+### Prerequisites
 
-5. Set the local Python version for this project:
-   ```
-   pyenv local 3.12.7
-   ```
+- Python 3.12.7
+- Node.js 18+
+- PostgreSQL
 
-6. Verify the installation:
+### Backend Setup
+
+1. Clone the repository:
    ```
-   python --version
+   git clone https://github.com/your-username/your-repo-name.git
+   cd your-repo-name/src/backend
    ```
 
-   This should output: Python 3.12.7
-
-### Poetry
-
-We use Poetry for Python dependency management. To set up Poetry:
-
-1. Install Poetry (if not already installed):
-   ```
-   curl -sSL https://install.python-poetry.org | python3 -
-   ```
-
-2. Initialize a new Poetry project:
-   ```
-   poetry init
-   ```
-
-3. Install project dependencies:
+2. Set up a virtual environment and install dependencies:
    ```
    poetry install
    ```
 
-### TypeScript
-
-The frontend of this project uses TypeScript. To set up the TypeScript environment:
-
-1. Initialize a new Node.js project:
-   ```
-   npm init -y
-   ```
-
-2. Install TypeScript and other dev dependencies:
-   ```
-   npm install --save-dev typescript @types/node ts-node
-   ```
-
-3. Create a `tsconfig.json` file for TypeScript configuration:
-   ```
-   npx tsc --init
-   ```
-
-4. Update the `tsconfig.json` file with the following configuration:
-
-   ```json
-   {
-     "compilerOptions": {
-       "target": "es6",
-       "module": "commonjs",
-       "strict": true,
-       "esModuleInterop": true,
-       "skipLibCheck": true,
-       "forceConsistentCasingInFileNames": true,
-       "outDir": "./dist",
-       "rootDir": "./src"
-     },
-     "include": ["src/**/*"],
-     "exclude": ["node_modules"]
-   }
-   ```
-
-### Project Structure
-
-The project is structured as follows:
-
-- `src/`
-  - `backend/`: Contains the Flask backend code
-    - `app/`: Core application code
-    - `tests/`: Backend test files
-    - `run.py`: Entry point for running the backend
-  - `frontend/`: Contains the Next.js frontend code
-    - `src/`: Frontend source code
-    - `public/`: Static files
-- `README.md`: Project documentation
-- `pyproject.toml`: Python project configuration and dependencies
-- `.gitignore`: Specifies files to be ignored by Git
-- `.pre-commit-config.yaml`: Configuration for pre-commit hooks
-- `LICENSE`: MIT License for the project
-
-### Development Tools
-
-1. **Black**: We use Black for Python code formatting. It's configured in the `pyproject.toml` file.
-
-2. **Pre-commit**: We use pre-commit hooks to ensure code quality. The configuration is in `.pre-commit-config.yaml`.
-
-3. **pytest**: For Python testing, we use pytest. The configuration is in `tests/pytest.ini`.
-
-## Development
-
-### Setting up the Backend
-
-1. Install dependencies:
-   ```
-   poetry install
-   ```
-
-2. Set up environment variables:
+3. Set up environment variables:
    Create a `.env` file in the `src/backend` directory with the following content:
    ```
    SECRET_KEY=your-secret-key
    DATABASE_URL=postgresql://username:password@localhost/dbname
    ```
-   Replace `your-secret-key`, `username`, `password`, and `dbname` with your actual values.
 
-3. Initialize the database:
+4. Initialize the database:
    ```
-   cd src/backend
-   poetry run flask db init
-   poetry run flask db migrate -m "Initial migration"
    poetry run flask db upgrade
    ```
 
-### Running the Backend
-
-To run the Flask development server for the backend:
-
-1. Navigate to the backend directory:
-   ```
-   cd src/backend
-   ```
-
-2. Start the Flask development server:
-   ```
-   poetry run python run.py
-   ```
-
-This will start your Flask application, typically accessible at `http://localhost:5000`.
-
-### Project Structure
-
-The backend follows this structure:
-
-```
-src/backend/
-├── app/
-│   ├── __init__.py
-│   ├── main.py
-│   └── config.py
-├── tests/
-├── run.py
-└── .env
-```
-
-- `app/`: Contains the core application code
-- `tests/`: Contains test files
-- `run.py`: Entry point for running the application
-- `.env`: Contains environment variables (not tracked in git)
-
-### API Endpoints
-
-- `GET /`: Returns a welcome message
-
-## Frontend Development
-
-The frontend of this project uses Next.js with TypeScript and Tailwind CSS.
-
-### Setting up the Frontend
+### Frontend Setup
 
 1. Navigate to the frontend directory:
    ```
-   cd src/frontend
+   cd ../frontend
    ```
 
 2. Install dependencies:
@@ -209,93 +67,44 @@ The frontend of this project uses Next.js with TypeScript and Tailwind CSS.
    npm install
    ```
 
-3. Set up environment variables:
-   Create a `.env.local` file in the `src/frontend` directory with any necessary environment variables.
+3. Create a `.env.local` file with necessary environment variables.
 
-### Running the Frontend
+## Usage
 
-To start the Next.js development server:
-
-1. Navigate to the frontend directory:
-   ```
-   cd src/frontend
-   ```
-
-2. Start the development server:
-   ```
-   npm run dev
-   ```
-
-This will start your Next.js application, typically accessible at `http://localhost:3000`.
-
-### Frontend Structure
-
-The frontend follows the standard Next.js structure:
-
-- `src/app/`: Contains the application routes and components
-- `src/components/`: Reusable React components
-- `public/`: Static assets
-- `tailwind.config.ts`: Tailwind CSS configuration
-- `next.config.mjs`: Next.js configuration
-
-## Getting Started
-
-1. Clone the repository:
-   ```
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
-   ```
-
-2. Set up the backend:
-   a. Navigate to the backend directory:
-      ```
-      cd src/backend
-      ```
-   b. Install Python dependencies:
-      ```
-      poetry install
-      ```
-   c. Set up environment variables:
-      Create a `.env` file in the `src/backend` directory with the necessary environment variables.
-   d. Initialize the database:
-      ```
-      poetry run flask db init
-      poetry run flask db migrate -m "Initial migration"
-      poetry run flask db upgrade
-      ```
-
-3. Set up the frontend:
-   a. Navigate to the frontend directory:
-      ```
-      cd src/frontend
-      ```
-   b. Install Node.js dependencies:
-      ```
-      npm install
-      ```
-   c. Set up environment variables:
-      Create a `.env.local` file in the `src/frontend` directory with any necessary environment variables.
-
-4. Start the backend server:
+1. Start the backend server:
    ```
    cd src/backend
    poetry run python run.py
    ```
 
-5. In a new terminal, start the frontend development server:
+2. In a new terminal, start the frontend development server:
    ```
    cd src/frontend
    npm run dev
    ```
 
-6. Open your browser and visit `http://localhost:3000` to see the application running.
+3. Open your browser and visit `http://localhost:3000`.
 
-For more detailed instructions on setting up and running each part of the application, refer to the Backend Development and Frontend Development sections of this README.
+## API Reference
 
-## License
-
-This project is open-source and available under the MIT License. See the `LICENSE` file for more details.
+[Provide a brief overview of your API endpoints or link to full documentation]
 
 ## Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Contact
+
+Craig van der Merwe - [@craigvandotcom](https://twitter.com/craigvandotcom)
+
+Project Link: [https://github.com/craigvandotcom/tex](https://github.com/craigvandotcom/tex)
