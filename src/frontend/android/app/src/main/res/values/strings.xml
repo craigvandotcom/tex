@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">tex</string>
+    <string name="title_activity_main">tex</string>
+    <string name="package_name">com.craigvan.tex</string>
+    <string name="custom_url_scheme">com.craigvan.tex</string>
+</resources>
