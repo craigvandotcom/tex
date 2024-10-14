@@ -4,3 +4,11 @@ __pycache__/
 .venv/
 .pytest_cache/
 /_project/
+.env
+*.db
+
+# Frontend
+src/frontend/node_modules/
+src/frontend/.next/
+src/frontend/.vercel
+src/frontend/.env*.local

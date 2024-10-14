@@ -106,12 +106,16 @@ The frontend of this project uses TypeScript. To set up the TypeScript environme
 
 The project is structured as follows:
 
-- `src/`: Contains the TypeScript source code for the frontend
-- `tests/`: Contains Python test files
+- `src/`
+  - `backend/`: Contains the Flask backend code
+    - `app/`: Core application code
+    - `tests/`: Backend test files
+    - `run.py`: Entry point for running the backend
+  - `frontend/`: Contains the Next.js frontend code
+    - `src/`: Frontend source code
+    - `public/`: Static files
 - `README.md`: Project documentation
 - `pyproject.toml`: Python project configuration and dependencies
-- `package.json`: Node.js project configuration and dependencies
-- `tsconfig.json`: TypeScript configuration
 - `.gitignore`: Specifies files to be ignored by Git
 - `.pre-commit-config.yaml`: Configuration for pre-commit hooks
 - `LICENSE`: MIT License for the project
@@ -124,15 +128,169 @@ The project is structured as follows:
 
 3. **pytest**: For Python testing, we use pytest. The configuration is in `tests/pytest.ini`.
 
+## Development
+
+### Setting up the Backend
+
+1. Install dependencies:
+   ```
+   poetry install
+   ```
+
+2. Set up environment variables:
+   Create a `.env` file in the `src/backend` directory with the following content:
+   ```
+   SECRET_KEY=your-secret-key
+   DATABASE_URL=postgresql://username:password@localhost/dbname
+   ```
+   Replace `your-secret-key`, `username`, `password`, and `dbname` with your actual values.
+
+3. Initialize the database:
+   ```
+   cd src/backend
+   poetry run flask db init
+   poetry run flask db migrate -m "Initial migration"
+   poetry run flask db upgrade
+   ```
+
+### Running the Backend
+
+To run the Flask development server for the backend:
+
+1. Navigate to the backend directory:
+   ```
+   cd src/backend
+   ```
+
+2. Start the Flask development server:
+   ```
+   poetry run python run.py
+   ```
+
+This will start your Flask application, typically accessible at `http://localhost:5000`.
+
+### Project Structure
+
+The backend follows this structure:
+
+```
+src/backend/
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│   └── config.py
+├── tests/
+├── run.py
+└── .env
+```
+
+- `app/`: Contains the core application code
+- `tests/`: Contains test files
+- `run.py`: Entry point for running the application
+- `.env`: Contains environment variables (not tracked in git)
+
+### API Endpoints
+
+- `GET /`: Returns a welcome message
+
+## Frontend Development
+
+The frontend of this project uses Next.js with TypeScript and Tailwind CSS.
+
+### Setting up the Frontend
+
+1. Navigate to the frontend directory:
+   ```
+   cd src/frontend
+   ```
+
+2. Install dependencies:
+   ```
+   npm install
+   ```
+
+3. Set up environment variables:
+   Create a `.env.local` file in the `src/frontend` directory with any necessary environment variables.
+
+### Running the Frontend
+
+To start the Next.js development server:
+
+1. Navigate to the frontend directory:
+   ```
+   cd src/frontend
+   ```
+
+2. Start the development server:
+   ```
+   npm run dev
+   ```
+
+This will start your Next.js application, typically accessible at `http://localhost:3000`.
+
+### Frontend Structure
+
+The frontend follows the standard Next.js structure:
+
+- `src/app/`: Contains the application routes and components
+- `src/components/`: Reusable React components
+- `public/`: Static assets
+- `tailwind.config.ts`: Tailwind CSS configuration
+- `next.config.mjs`: Next.js configuration
+
 ## Getting Started
 
-1. Clone the repository
-2. Set up the Python environment as described above
-3. Install Python dependencies: `poetry install`
-4. Install Node.js dependencies: `npm install`
-5. Run Python tests: `poetry run pytest`
-6. Build TypeScript: `npm run build`
-7. Start the development server: `npm run dev`
+1. Clone the repository:
+   ```
+   git clone https://github.com/your-username/your-repo-name.git
+   cd your-repo-name
+   ```
+
+2. Set up the backend:
+   a. Navigate to the backend directory:
+      ```
+      cd src/backend
+      ```
+   b. Install Python dependencies:
+      ```
+      poetry install
+      ```
+   c. Set up environment variables:
+      Create a `.env` file in the `src/backend` directory with the necessary environment variables.
+   d. Initialize the database:
+      ```
+      poetry run flask db init
+      poetry run flask db migrate -m "Initial migration"
+      poetry run flask db upgrade
+      ```
+
+3. Set up the frontend:
+   a. Navigate to the frontend directory:
+      ```
+      cd src/frontend
+      ```
+   b. Install Node.js dependencies:
+      ```
+      npm install
+      ```
+   c. Set up environment variables:
+      Create a `.env.local` file in the `src/frontend` directory with any necessary environment variables.
+
+4. Start the backend server:
+   ```
+   cd src/backend
+   poetry run python run.py
+   ```
+
+5. In a new terminal, start the frontend development server:
+   ```
+   cd src/frontend
+   npm run dev
+   ```
+
+6. Open your browser and visit `http://localhost:3000` to see the application running.
+
+For more detailed instructions on setting up and running each part of the application, refer to the Backend Development and Frontend Development sections of this README.
 
 ## License
 
