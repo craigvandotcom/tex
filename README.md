@@ -108,3 +108,73 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 Craig van der Merwe - [@craigvandotcom](https://twitter.com/craigvandotcom)
 
 Project Link: [https://github.com/craigvandotcom/tex](https://github.com/craigvandotcom/tex)
+
+## Cloud Setup
+
+This project is configured to use AWS by default, but can be adapted for other cloud providers.
+
+### AWS Setup
+
+1. Install the AWS CLI:
+   ```
+   pip install awscli
+   ```
+
+2. Configure AWS credentials:
+   ```
+   aws configure
+   ```
+   Enter your AWS Access Key ID, Secret Access Key, and preferred region when prompted.
+
+3. Install Boto3:
+   ```
+   poetry add boto3
+   ```
+
+4. Update your `.env` file with AWS-specific variables:
+   ```
+   AWS_ACCESS_KEY_ID=your_access_key_here
+   AWS_SECRET_ACCESS_KEY=your_secret_key_here
+   AWS_DEFAULT_REGION=your_preferred_region
+   ```
+
+### Alternative Cloud Providers
+
+While this project is set up for AWS, you can adapt it to use other cloud providers:
+
+- **Google Cloud Platform (GCP)**:
+  - Install the Google Cloud SDK
+  - Use the `google-cloud-storage` library for Python
+  - Update environment variables for GCP credentials
+
+- **Microsoft Azure**:
+  - Install the Azure CLI
+  - Use the `azure-storage-blob` library for Python
+  - Update environment variables for Azure credentials
+
+- **DigitalOcean**:
+  - Install the DigitalOcean CLI (doctl)
+  - Use the `boto3` library with DigitalOcean Spaces (S3-compatible)
+  - Update environment variables for DigitalOcean credentials
+
+To switch providers, you'll need to modify the cloud interaction code in the backend and update the corresponding environment variables.
+
+## Environment Variables
+
+Create a `.env` file in the project root with the following variables:
+
+```
+# Flask
+SECRET_KEY=your_secret_key_here
+DATABASE_URL=postgresql://username:password@localhost/dbname
+
+# AWS (or your chosen cloud provider)
+AWS_ACCESS_KEY_ID=your_access_key_here
+AWS_SECRET_ACCESS_KEY=your_secret_key_here
+AWS_DEFAULT_REGION=your_preferred_region
+
+# Electron
+ELECTRON_START_URL=http://localhost:3000
+```
+
+Ensure that `.env` is listed in your `.gitignore` file to keep sensitive information out of version control.
