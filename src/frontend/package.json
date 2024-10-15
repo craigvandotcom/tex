@@ -1,12 +1,17 @@
 {
-  "name": "frontend",
+  "name": "tex",
   "version": "0.1.0",
   "private": true,
+  "main": "../../electron-main.js",
   "scripts": {
     "dev": "next dev",
     "build": "next build && npx cap sync",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "electron-dev": "next build && concurrently \"next start\" \"npm run electron\"",
+    "electron": "wait-on http://localhost:3000 && electron ../..",
+    "electron-build": "npm run build && electron-builder",
+    "electron-start": "electron ../.."
   },
   "dependencies": {
     "@capacitor/android": "^6.1.2",
@@ -22,10 +27,31 @@
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "concurrently": "^8.2.2",
+    "electron": "^32.2.0",
+    "electron-builder": "^25.1.8",
     "eslint": "^8",
     "eslint-config-next": "14.2.15",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wait-on": "^7.2.0"
+  },
+  "build": {
+    "appId": "com.craigvan.tex",
+    "productName": "tex",
+    "files": [
+      "out/**/*",
+      "../../electron-main.js"
+    ],
+    "mac": {
+      "category": "public.app-category.productivity"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "linux": {
+      "target": "AppImage"
+    }
   }
 }

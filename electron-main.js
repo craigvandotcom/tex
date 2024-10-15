@@ -12,11 +12,8 @@ function createWindow() {
     },
   });
 
-  const startUrl = process.env.ELECTRON_START_URL || url.format({
-    pathname: path.join(__dirname, './src/frontend/out/index.html'),
-    protocol: 'file:',
-    slashes: true,
-  });
+  // Update this part
+  const startUrl = process.env.ELECTRON_START_URL || 'http://localhost:3000';
   
   win.loadURL(startUrl);
 }
